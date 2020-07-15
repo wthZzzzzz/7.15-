@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: 1000px;
+    }
+
+    #banner {
+        height: 390px;
+        width: 100%;
+        margin-top: 120px;
+        background-image: url(./imgs/banner0.jpg);
+        background-size: 100% 390px;
+        position: relative;
+    }
+
+    .strip {
+        position: absolute;
+        height: 8px;
+        width: 100%;
+        top: 350px;
+        line-height: 15px;
+        padding-top: 7px;
+
+    }
+
+    ul {
+        list-style: none;
+        width: 420px;
+        height: 2px;
+        margin: 0 auto;
+    }
+
+    ul li {
+        height: 2px;
+        width: 60px;
+        margin-right: 10px;
+        float: left;
+        background-color: #fff;
+        opacity: 0.3;
+        cursor: pointer;
+    }
+
+    ul li:last-child {
+        margin-right: 0;
+    }
+
+    .liShow {
+        background-color: #2691fd;
+        opacity: 1;
+    }
+</style>
+
+<body>
+
+    <div id="banner">
+        <div class="strip">
+            <ul>
+                <li class="liShow"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="./jquery1.7.js"></script>
+    <script>
+        $(function () {
+
+
+
+            var index=0;
+            $(".strip").find("li").click(function(){
+                $(this).addClass("liShow").siblings().removeClass("liShow");
+                index= $(this).index();
+                $("#banner").css("backgroundImage","url(./imgs/banner"+index+".jpg)")
+            })
+            setInterval(function(){
+                index++;
+                if(index>5){
+                    index=0;
+                }
+                $(".strip").find("li").eq(index).addClass("liShow").siblings().removeClass("liShow").slideDown();
+                $("#banner").css("backgroundImage","url(./imgs/banner"+index+".jpg)")
+            },2000)
+
+
+            
+           
+
+
+        })
+    </script>
+</body>
+
+</html>
